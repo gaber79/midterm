@@ -1,0 +1,8 @@
+{
+  "user": "cshkxpsrtkbbfb",
+  "password": "-IMf4MOzPSv2ApPmbaWWv3-Zb5",
+  "database": "d7p13pcdalm4in",
+  "hostname": "ec2-23-23-237-146.compute-1.amazonaws.com",
+  "port": 5432,
+  "ssl": true
+}
