@@ -26,21 +26,7 @@ $(() => {
 
     $('p').append(dom);
   });
-  $.get('/api/resources').then(resources => {
-    const dom = resources.map(user => {
-      if(user.type == picture)
-      // return $("<div/>").html(user.username);
-      return $("<a>" + user.urls + ">");
 
-    });
-    });
-  $.get('/api/resources').then(resources => {
-    const dom = resources.map(user => {
-      // return $("<div/>").html(user.username);
-      return $("<a>" + user.urls + ">");
-
-    });
-    });
   $.get('/api/resources').then(resources => {
     const dom = resources.map(user => {
       // return $("<div/>").html(user.username);
