@@ -10,6 +10,7 @@ module.exports = (knex) => {
       .select("*")
       .from("users")
       .then((results) => {
+        // console.log('test db connect.')
         res.json(results);
     });
   });
