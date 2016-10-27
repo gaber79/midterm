@@ -1,3 +1,4 @@
+INSERT INTO users (username, password) VALUES('gaber', 'testing');
 INSERT INTO users (username, password) VALUES('justin', 'testing');
 INSERT INTO users (username, password) VALUES('lydia', 'testing');
 
