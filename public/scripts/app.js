@@ -24,6 +24,7 @@ $(() => {
     //$('body').append(dom);
   });
 
+
   // <section class="resource-container">
   //   <article>
   //     <a href="http://google.ca">http://google.ca</a>
