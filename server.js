@@ -26,7 +26,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const commentsRoutes = require("./routes/comments");
-const user_activityRoutes = require("./routes/user_activity");
+const activityRoutes = require("./routes/activity");
 const resourcesRoutes = require("./routes/resources");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -50,8 +50,8 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
-app.use("/api/resources", user_activityRoutes(knex));
-app.use("/api/user_activity", resourcesRoutes(knex));
+app.use("/api/resources", resourcesRoutes(knex));
+app.use("/api/activity", activityRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -59,13 +59,19 @@ app.get("/", (req, res) => {
 });
 
 // search page
-app.get("/search", (req, res) => {
+app.post("/search", (req, res) => {
   res.render("index");
 });
-//post or share content
-app.get("/resource-new", (req, res) => {
-  res.render("index");
-});
+
+/*
+GET /comments
+POST /comments
+GET /comments/new
+GET /comments/:id
+GET /comments/:id/edit
+PUT /comments/:id
+DELETE /comments/:id
+*/
 
 
 
