@@ -58,9 +58,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
 // search page
 app.post("/search", (req, res) => {
   res.render("index");
+});
+// comment page
+app.post("/comment", (req, res) => {
+  res.redirect("index");
 });
 
 /*

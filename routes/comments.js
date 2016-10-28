@@ -15,5 +15,15 @@ module.exports = (knex) => {
     });
   });
 
+  router.post("/", (req, res) => {
+
+    console.log( req.body)
+    knex('comments').insert({resourcesid: req.body.resourceid, userid: 1, comment: req.body.commenttext})
+    .then((result) => {
+
+        res.json({ success: true});
+    });
+  });
+
   return router;
 }

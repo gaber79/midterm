@@ -26,5 +26,16 @@ module.exports = (knex) => {
     });
   });
 
+  //  router.get("/comments", (req, res) => {
+  //   knex
+  //     .select("*")
+  //     .from("comments")
+  //     .then((results) => {
+  //       // console.log('test db connect.')
+  //       res.json(results);
+  //   });
+  // });
+
+
   return router;
 }
