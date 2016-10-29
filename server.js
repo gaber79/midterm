@@ -99,6 +99,9 @@ app.post("/login", (req, res) => {
     res.redirect("/users/" + username);
   })
 
+  app.post("/resources", (req, res) => {
+    res.redirect("/index")
+  })
 
 /*
 GET /comments
