@@ -5,6 +5,7 @@ const ENV         = process.env.NODE_ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const cookieSession = require("cookie-session");
 const app         = express();
 
 console.log('Running in "%s" mode', ENV);
@@ -20,7 +21,11 @@ const knexLogger  = require('knex-logger');
 
 
 
-
+// cookie session setup
+app.use(cookieSession({
+  name: 'session',
+  keys: ['secret']
+}))
 // console.log(process.env);
 
 // Seperated Routes for each Resource
@@ -56,7 +61,12 @@ app.use("/api/activity", activityRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
+  if(!req.session.username) {
+    res.redirect("/login")
+} else {
+
   res.render("index");
+}
 });
 
 // SEARCH RESULTS
@@ -81,6 +91,38 @@ app.get("/search", (req, res) => {
   })
 });
 
+<<<<<<< HEAD
+=======
+app.get("/login", (req, res) => {
+  res.render("login");
+})
+
+app.post("/login", (req, res) => {
+  knex
+    .select("username")
+    .from("users")
+    .where({username: req.body.username})
+    .then((results) => {
+      // console.log('test db connect.')
+      // res.json(results);
+      if (results.length > 0) { // found a user
+        req.session.username = results[0].username;
+        // console.log("!!!!!!!!", results)
+        res.redirect("/");
+      }
+    });
+})
+
+  // where do you go after login. to user page
+  app.get("/users/:id", (req, res) => {
+    var username = req.param.id
+    res.redirect("/users/" + username);
+  })
+
+  app.post("/resources", (req, res) => {
+    res.redirect("/index")
+  })
+>>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
 
 /*
 GET /comments

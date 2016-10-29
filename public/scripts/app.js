@@ -21,10 +21,28 @@ $(() => {
       // return $("<div/>").html(user.username);
       return $("<p>" + user.username + "</p>");
     });
+<<<<<<< HEAD
     //$('body').append(dom);
   });
 
 //---------------------LOAD COMMENTS ON PAGE----------------------------------------------
+=======
+
+    // $('body').append(dom);
+  });
+
+
+  // <section class="resource-container">
+  //   <article>
+  //     <a href="http://google.ca">http://google.ca</a>
+  //     <ul>
+  //       <li>Comment 1</li>
+  //       <li>Comment 2</li>
+  //     </ul>
+  //   </article>
+  // </section>
+
+>>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
   $.get('/api/resources').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
