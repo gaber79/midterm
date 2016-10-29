@@ -95,13 +95,21 @@ app.get("/login", (req, res) => {
         }
       });
   })
-  
-  app.get("/users")
+
+
 
   // where do you go after login. to user page
   app.get("/users/:id", (req, res) => {
-    var username = req.param.id
-    res.redirect("/users/" + username);
+    knex
+      .select ('*')
+      .from('user_activity')
+      .where('user_activity.userid', '=', req.params.id)
+      .then((results) => {
+        console.log(results)
+        res.render('resources_show', results)
+      // var username = req.param.id
+      // res.redirect("/users/" + username);
+      })
   })
 
   // ----------------------------------------------------------------------------------end of user section
@@ -131,6 +139,7 @@ app.get("/login", (req, res) => {
       res.render("resources_show", templateVars)
       })
   });
+
 
   // post new resource
   app.post("/resources", (req, res) => {
