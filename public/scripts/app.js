@@ -51,7 +51,7 @@ $(() => {
         let inputform = $('<form method="post" action="/api/comments/">');
         resourceTag.append(inputform);
         inputform.append($('<input name="resourceid" type="hidden" value="' + resource.resourcesid + '" />'));
-        inputform.append($('<textarea name="commenttext"></textarea>'));
+        inputform.append($('<textarea name="commenttext" placeholder="join the conversation..."></textarea>'));
         inputform.append($('<input type="submit" value="Comment">'));
         let commentTag = $('<ul>');
         resourceTag.append(commentTag);

@@ -22,7 +22,7 @@ module.exports = (knex) => {
 
         res.json({ success: true});
       })
-    }
+
     });
 
 
