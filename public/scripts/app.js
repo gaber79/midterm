@@ -44,7 +44,10 @@ $(() => {
       console.log(resource)
         let resourceTag = $("<article>").addClass('each-resource');
 
-        resourceTag.append($('<a href="' + resource.urls + '">' + resource.urls + '</a>'));
+        resourceTag.append($('<img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png" width="80" height="80">'));
+        resourceTag.append($('<p class="type">' + resource.topic + '</p>'))
+        resourceTag.append($('<a class="link "href="' + resource.urls + '">' + resource.urls + '</a>'));
+        resourceTag.append($('<p class="type">' + resource.type + '</p>'))
         let inputform = $('<form method="post" action="/api/comments/">');
         resourceTag.append(inputform);
         inputform.append($('<input name="resourceid" type="hidden" value="' + resource.resourcesid + '" />'));
@@ -81,29 +84,30 @@ $(() => {
     //$('p .rating').append(dom);
   });
 
- $('body').on('submit', 'form', function (event) {
-  event.preventDefault();
-  console.log('form values:', $(this).serialize());
-  console.log('event values:', JSON.stringify(event));
-  let formSubmitted = $(event.target);
-  let commentField = $(this.commenttext);
-  console.log("THIS IS COMMENT: " + commentField);
-  $.ajax ({
-    url: "/api/comments",
-    method: 'post',
-    data: $(this).serialize(),
-    success: function (data) {
+  $('body').on('submit', 'form', function (event) {
+    event.preventDefault();
+    console.log('form values:', $(this).serialize());
+    console.log('event values:', JSON.stringify(event));
+    let formSubmitted = $(event.target);
+    let commentField = $(this.commenttext);
+    console.log("THIS IS COMMENT: " + commentField);
+    $.ajax ({
+      url: "/api/comments",
+      method: 'post',
+      data: $(this).serialize(),
+      success: function (data) {
+        // if(commentField.val() === "") {
+        //   alert('No Comment Detected');
+        // }
 
-  console.log(JSON.stringify(formSubmitted));
-     formSubmitted.parent().children('ul').prepend("<li>" + commentField.val() + "</li>");
-     commentField.val("");
-     $('body > ul').html(data);
-      alert("Added Comment!");
-    },
-    error: function (data) {
-      alert("No Comment!");
-    }
-   });
+        formSubmitted.parent().children('ul').prepend("<li>" + commentField.val() + "</li>");
+        commentField.val("");
+        // $('body > ul').html(data);
+      },
+      error: function (data) {
+        alert("No Comment!");
+      }
+    });
   })
 
   function renderPostsFromDB() {
@@ -115,7 +119,7 @@ $(() => {
         console.log(data);
         renderResource(data);
       }
-    })
+    });
   }
 
   renderResource();
