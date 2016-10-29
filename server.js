@@ -38,6 +38,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
+app.set('view options', {layout: 'other'});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -58,10 +59,28 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
+// SEARCH RESULTS
+app.get("/search", (req, res) => {
+
+  let searchTerm = req.query.search;
+  debugger;
+ //run query for search term
+  knex
+    .select('*')
+    .from('resources')
+    .where('urls', 'like', `%${searchTerm}%`)
+    .orWhere('type', 'like', `%${searchTerm}%`)
+    .orWhere('topic', 'like', `%${searchTerm}%`)
+    .then((results) => {
+      // console.log(results);
+      debugger;
+      res.render('search-results', results);
+      debugger;
+    }, function errorCb(err) {
+      throw err;
+  })
 });
+
 
 /*
 GET /comments
@@ -72,6 +91,7 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
+
 
 
 

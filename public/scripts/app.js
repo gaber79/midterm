@@ -8,6 +8,8 @@ $(() => {
   //   }
   // });
 
+  // ---------------------------TOGGLE COMMENTS TEXT AREA---------------------------------
+
   $('button').on("click" ,function(event){
     $('textarea').slideToggle();
     $('textarea').trigger("focus");
@@ -18,22 +20,11 @@ $(() => {
     const dom = users.map(user => {
       // return $("<div/>").html(user.username);
       return $("<p>" + user.username + "</p>");
-
     });
-
     //$('body').append(dom);
   });
 
-  // <section class="resource-container">
-  //   <article>
-  //     <a href="http://google.ca">http://google.ca</a>
-  //     <ul>
-  //       <li>Comment 1</li>
-  //       <li>Comment 2</li>
-  //     </ul>
-  //   </article>
-  // </section>
-
+//---------------------LOAD COMMENTS ON PAGE----------------------------------------------
   $.get('/api/resources').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
@@ -57,8 +48,45 @@ $(() => {
 
     $('body').append(containerTag);
 
-    //$('img').append(dom);
   });
+//THIS IS WHAT THE COMMENTS CODE IS GENERATING
+  // <section class="resource-container">
+  //   <article>
+  //     <a href="http://google.ca">http://google.ca</a>
+  //     <ul>
+  //       <li>Comment 1</li>
+  //       <li>Comment 2</li>
+  //     </ul>
+  //   </article>
+  // </section>
+
+
+
+// ---------------------SEARCH PAGE AND HIDE UNLIKE SEARCHTERM---------------------------
+  // $('.search-button').on("click" ,function(event){
+  //   //hide function
+  //   let searchTerm = $('input#search-bar')
+  //   let tag = $('<a>').attr('href')
+  //   let section =
+  //   //  knex
+  //   //   .select("*")
+  //   //   .from("resources")
+  //   //   // .where('urls', 'like', '%'+searchTerm+'%')
+  //   //   .where('urls', 'like', `%${searchTerm}%`)
+  //   //   .orWhere('type', 'like', `%${searchTerm}%`)
+  //   //   .orWhere('topic', 'like', `%${searchTerm}%`)
+  //   //   .then((results) => {
+  //   //     results.hide("fast");
+  //   //     // res.redirect("search-results");
+  //   // });
+
+  //   if(searchTerm){}
+
+  // });
+
+
+
+
   $.get('/api/activity').then(activity => {
     const dom = activity.map(user => {
       // return $("<div/>").html(user.username);
@@ -70,3 +98,5 @@ $(() => {
     //$('p .rating').append(dom);
   });
 });
+
+
