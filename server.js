@@ -77,21 +77,26 @@ app.get("/login", (req, res) => {
   res.render("login");
 })
 
-app.post("/login", (req, res) => {
-  knex
-    .select("username")
-    .from("users")
-    .where({username: req.body.username})
-    .then((results) => {
-      // console.log('test db connect.')
-      // res.json(results);
-      if (results.length > 0) { // found a user
-        req.session.username = results[0].username;
-        // console.log("!!!!!!!!", results)
-        res.redirect("/");
-      }
-    });
-})
+
+  
+  // login post. creates a cookie for user. --------------------------------------------user section
+  app.post("/login", (req, res) => {
+    knex
+      .select("username")
+      .from("users")
+      .where({username: req.body.username})
+      .then((results) => {
+        // console.log('test db connect.')
+        // res.json(results);
+        if (results.length > 0) { // found a user
+          req.session.username = results[0].username;
+          // console.log("!!!!!!!!", results)
+          res.redirect("/");
+        }
+      });
+  })
+  
+  app.get("/users")
 
   // where do you go after login. to user page
   app.get("/users/:id", (req, res) => {
@@ -99,10 +104,65 @@ app.post("/login", (req, res) => {
     res.redirect("/users/" + username);
   })
 
-  app.post("/resources", (req, res) => {
-    res.redirect("/index")
-  })
+  // ----------------------------------------------------------------------------------end of user section
 
+  // resources new form -----------------------------------------------------------------------resource section
+  app.get("/resources/new", (req, res) => {
+    // app.use("/api/resources", resourcesRoutes(knex));
+    // console.log("it works here. you got it.")
+    res.render("resourceform");
+  });
+  
+  app.get("/resources/:id", (req, res) => {
+    knex 
+      .select('*')
+      .from('resources')
+      .where('resourcesid', '=', req.params.id)
+      .limit(1)
+      .then((results) => {
+        // console.log(results[0])
+        let templateVars = {
+          resourcesid: req.params.id,
+          urls: results[0].urls,
+          type: results[0].type,
+          topic: results[0].topic
+        }
+        // console.log(templateVars)
+      res.render("resources_show", templateVars)
+      })
+  });
+
+  // post new resource
+  app.post("/resources", (req, res) => {
+    var newResource = {
+      urls: req.body.urls,
+      type: req.body.type,
+      topic: req.body.topic
+    }
+      knex
+        .insert(newResource)
+        .into('resources')
+        .then( function (result) {
+          knex
+            .select('*')
+            .from('resources')
+            .orderBy('resourcesid', 'desc')
+            .limit(1)
+            .then( function (newresult) {
+              var resID = newresult[0].resourcesid
+          res.redirect("/resources/" + resID)
+        });
+        })
+  });
+
+
+  // get resources
+  // app.get("/resources", (req, res) => {
+  //   app.use("/api/resources", resourcesRoutes(knex));
+  //   res.render("index");
+  // });
+
+  // -----------------------------------------------------------------------end of resource section
 /*
 GET /comments
 POST /comments
