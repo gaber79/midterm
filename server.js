@@ -115,13 +115,26 @@ app.get("/login", (req, res) => {
         }
       });
   })
+<<<<<<< HEAD
   
   app.get("/users")
+=======
+
+
+>>>>>>> userfeature
 
   // where do you go after login. to user page
   app.get("/users/:id", (req, res) => {
-    var username = req.param.id
-    res.redirect("/users/" + username);
+    knex
+      .select ('*')
+      .from('user_activity')
+      .where('user_activity.userid', '=', req.params.id)
+      .then((results) => {
+        console.log(results)
+        res.render('resources_show', results)
+      // var username = req.param.id
+      // res.redirect("/users/" + username);
+      })
   })
 
   // ----------------------------------------------------------------------------------end of user section
@@ -152,9 +165,15 @@ app.get("/login", (req, res) => {
       })
   });
 
+<<<<<<< HEAD
   // post new resource
   app.post("/resources", (req, res) => {
 <<<<<<< HEAD
+=======
+
+  // post new resource
+  app.post("/resources", (req, res) => {
+>>>>>>> userfeature
     var newResource = {
       urls: req.body.urls,
       type: req.body.type,
@@ -171,6 +190,10 @@ app.get("/login", (req, res) => {
             .limit(1)
             .then( function (newresult) {
               var resID = newresult[0].resourcesid
+<<<<<<< HEAD
+=======
+          // res.json({sucess: true, message: 'ok' });
+>>>>>>> userfeature
           res.redirect("/resources/" + resID)
         });
         })
@@ -184,12 +207,15 @@ app.get("/login", (req, res) => {
   // });
 
   // -----------------------------------------------------------------------end of resource section
+<<<<<<< HEAD
 =======
     res.redirect("/index")
   })
 >>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
 
 >>>>>>> 442c9dba36d784089d8d9548b9e6f537f9105d68
+=======
+>>>>>>> userfeature
 /*
 GET /comments
 POST /comments
