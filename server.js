@@ -43,6 +43,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
+app.set('view options', {layout: 'other'});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -68,11 +69,30 @@ app.get("/", (req, res) => {
 }
 });
 
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
+// SEARCH RESULTS
+app.get("/search", (req, res) => {
+
+  let searchTerm = req.query.search;
+  debugger;
+ //run query for search term
+  knex
+    .select('*')
+    .from('resources')
+    .where('urls', 'like', `%${searchTerm}%`)
+    .orWhere('type', 'like', `%${searchTerm}%`)
+    .orWhere('topic', 'like', `%${searchTerm}%`)
+    .then((results) => {
+      // console.log(results);
+      debugger;
+      res.render('search-results', results);
+      debugger;
+    }, function errorCb(err) {
+      throw err;
+  })
 });
 
+<<<<<<< HEAD
+=======
 app.get("/login", (req, res) => {
   res.render("login");
 })
@@ -134,6 +154,7 @@ app.get("/login", (req, res) => {
 
   // post new resource
   app.post("/resources", (req, res) => {
+<<<<<<< HEAD
     var newResource = {
       urls: req.body.urls,
       type: req.body.type,
@@ -163,6 +184,12 @@ app.get("/login", (req, res) => {
   // });
 
   // -----------------------------------------------------------------------end of resource section
+=======
+    res.redirect("/index")
+  })
+>>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
+
+>>>>>>> 442c9dba36d784089d8d9548b9e6f537f9105d68
 /*
 GET /comments
 POST /comments
@@ -172,6 +199,7 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
+
 
 
 
