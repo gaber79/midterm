@@ -20,7 +20,6 @@ const knexLogger  = require('knex-logger');
 
 
 
-
 // console.log(process.env);
 
 // Seperated Routes for each Resource
@@ -38,6 +37,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
+app.set('view options', {layout: 'other'});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -55,12 +55,29 @@ app.use("/api/activity", activityRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index.ejs");
 });
 
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
+// SEARCH RESULTS
+app.get("/search", (req, res) => {
+
+  let searchTerm = req.query.search;
+  debugger;
+ //run query for search term
+  knex
+    .select('*')
+    .from('resources')
+    .where('urls', 'like', `%${searchTerm}%`)
+    .orWhere('type', 'like', `%${searchTerm}%`)
+    .orWhere('topic', 'like', `%${searchTerm}%`)
+    .then((results) => {
+      debugger;
+      console.log(results);
+      res.render("searchoutput", results);
+    }, function errorCb(err) {
+      throw err;
+      debugger;
+    });
 });
 
 /*
@@ -72,8 +89,6 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

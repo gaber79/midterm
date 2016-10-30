@@ -5,8 +5,7 @@
   margin-right: 10px;
 }
 
-#search-bar {
-  float: center;
+#search {
   width: 45%;
   background-color: #f2f2f2;
 }
@@ -14,7 +13,7 @@
 #nav-bar-container {
   width: 100%;
   height: 50px;
-  background-color: green;
+  background-color: #71eeb8;
   line-height: 3em;
   padding: 10px 10px 10px 10px;
   position: fixed;
