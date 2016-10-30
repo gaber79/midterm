@@ -1,0 +1,24 @@
+<% include partials/_header %>
+
+
+    <section class="share-container">
+      <form action="/share" method="POST">
+        <span class="share-form">
+          <input id="share" type="text" name="share" placeholder="Enter a URL"/>
+        </span>
+      <div class="dropdown">
+        <button class="dropbtn">Choose Type</button>
+        <div class="dropdown-content">
+          <a href="#">Link</a>
+          <a href="#">Video</a>
+          <a href="#">Picture</a>
+        </div>
+      </div>
+        <span class="share-form">
+          <input id="share" type="text" name="share" placeholder="ex. Javascript"/>
+        </span>
+        <input class="share-submit" type="submit" value="Share"/>
+      </form>
+    </section>
+
+ <% include partials/_footer %>
