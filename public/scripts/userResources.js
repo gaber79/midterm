@@ -1,12 +1,4 @@
 $(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/users"
-  // }).done((users) => {
-  //   for(user of users) {
-  //     $("<div>").text(user.name).appendTo($("body"));
-  //   }
-  // });
 
   // <section class="resource-container">
   //   <article>
@@ -89,7 +81,7 @@ $(() => {
       url: "/comments",
       method: "get",
       success: function(data) {
-        console.log(data);
+        // console.log(data);
         renderResource(data);
       }
     });

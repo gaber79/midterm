@@ -58,15 +58,21 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
 
-// Home page
+
+// Home page ----------------------------------------------------------------------index page
 app.get("/", (req, res) => {
   if(!req.session.username) {
     res.redirect("/login")
 } else {
-
-  res.render("index");
+  let templateVars = {
+    username: req.session.username
+  }
+  console.log("This cookie is in the index page. ", req.session.username);
+  res.render("index", templateVars);
 }
 });
+
+// -------------------------------------------------------------------------------- end of index
 
 // search page
 app.post("/search", (req, res) => {
@@ -90,7 +96,7 @@ app.get("/login", (req, res) => {
         // res.json(results);
         if (results.length > 0) { // found a user
           req.session.username = results[0].username;
-          // console.log("!!!!!!!!", results)
+          // console.log("!!!!!!!!", req.session.username)
           res.redirect("/");
         }
       });
@@ -101,12 +107,14 @@ app.get("/login", (req, res) => {
   // where do you go after login. to user page
   app.get("/users/:id", (req, res) => {
     knex
-      .select ('*')
+      .select('comments.resourcesid')
       .from('user_activity')
-      .where('user_activity.userid', '=', req.params.id)
+      .join('comments', 'user_activity.userid', '=', 'comments.userid')
+      .where('comments.userid', '=', req.params.id)
+      .groupBy('comments.resourcesid')
       .then((results) => {
         console.log(results)
-        res.render('resources_show', results)
+        // res.render('resources_show', results)
       // var username = req.param.id
       // res.redirect("/users/" + username);
       })
