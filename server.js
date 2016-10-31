@@ -25,7 +25,7 @@ const knexLogger  = require('knex-logger');
 app.use(cookieSession({
   name: 'session',
   keys: ['secret']
-}))
+}));
 // console.log(process.env);
 
 // Seperated Routes for each Resource
@@ -63,15 +63,16 @@ app.use("/api/activity", activityRoutes(knex));
 app.get("/", (req, res) => {
   if(!req.session.username) {
     res.redirect("/login")
-} else {
-  let templateVars = {
+  } else {
+    let templateVars = {
     username: req.session.username
   }
   console.log("This cookie is in the index page. ", req.session.username);
   res.render("index", templateVars);
-}
+  }
 });
 
+<<<<<<< HEAD
 // -------------------------------------------------------------------------------- end of index
 
 // search page
@@ -90,6 +91,31 @@ app.get("/search", (req, res) => {
    }, function errorCb(err) {
      throw err;
    });
+=======
+// SEARCH RESULTS
+app.get("/search", (req, res) => {
+
+  let searchTerm = req.query.search;
+ //run query for search term
+  knex
+    .select('*')
+    .from('resources')
+    .where('urls', 'like', `%${searchTerm}%`)
+    .orWhere('type', 'like', `%${searchTerm}%`)
+    .orWhere('topic', 'like', `%${searchTerm}%`)
+    .then((results) => {
+      // console.log(results);
+      res.render('search-results', results);
+    }, function errorCb(err) {
+      throw err;
+  })
+})
+// -------------------------------------------------------------------------------- end of index
+
+// search page
+app.post("/search", (req, res) => {
+  res.render("index");
+>>>>>>> master
 });
 
 app.get("/login", (req, res) => {
@@ -114,6 +140,10 @@ app.get("/login", (req, res) => {
         }
       });
   })
+<<<<<<< HEAD
+=======
+  
+>>>>>>> master
 
 
 
@@ -146,7 +176,10 @@ app.get("/login", (req, res) => {
       })
   });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
   // post new resource
   app.post("/resources", (req, res) => {
     var newResource = {
@@ -179,6 +212,11 @@ app.get("/login", (req, res) => {
   // });
 
   // -----------------------------------------------------------------------end of resource section
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> master
 
 
   // sorting routes-----------------------------------------------------------------------start of sort section

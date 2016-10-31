@@ -8,6 +8,31 @@ $(() => {
   //   }
   // });
 
+<<<<<<< HEAD
+=======
+  // ---------------------------TOGGLE COMMENTS TEXT AREA---------------------------------
+
+  // $('button').on("click" ,function(event){
+  //   $('textarea').slideToggle();
+  //   $('textarea').trigger("focus");
+  //   return false;
+  // });
+
+  // $.get('/api/users').then(users => {
+  //   const dom = users.map(user => {
+  //     // return $("<div/>").html(user.username);
+  //     return $("<p>" + user.username + "</p>");
+  //   });
+  //   //$('body').append(dom);
+  // });
+
+//---------------------LOAD COMMENTS ON PAGE----------------------------------------------
+
+    // $('body').append(dom);
+  // });
+
+
+>>>>>>> master
   // <section class="resource-container">
   //   <article>
   //     <a href="http://google.ca">http://google.ca</a>
@@ -85,6 +110,53 @@ $(() => {
     });
   })
 
+<<<<<<< HEAD
+=======
+ 
+//THIS IS WHAT THE COMMENTS CODE IS GENERATING
+  // <section class="resource-container">
+  //   <article>
+  //     <a href="http://google.ca">http://google.ca</a>
+  //     <ul>
+  //       <li>Comment 1</li>
+  //       <li>Comment 2</li>
+  //     </ul>
+  //   </article>
+  // </section>
+
+
+
+// ---------------------SEARCH PAGE AND HIDE UNLIKE SEARCHTERM---------------------------
+  // $('.search-button').on("click" ,function(event){
+  //   //hide function
+  //   let searchTerm = $('input#search-bar')
+  //   let tag = $('<a>').attr('href')
+  //   let section =
+  //   //  knex
+  //   //   .select("*")
+  //   //   .from("resources")
+  //   //   // .where('urls', 'like', '%'+searchTerm+'%')
+  //   //   .where('urls', 'like', `%${searchTerm}%`)
+  //   //   .orWhere('type', 'like', `%${searchTerm}%`)
+  //   //   .orWhere('topic', 'like', `%${searchTerm}%`)
+  //   //   .then((results) => {
+  //   //     results.hide("fast");
+  //   //     // res.redirect("search-results");
+  //   // });
+
+  //   if(searchTerm){}
+
+  // });
+
+
+
+
+  // $.get('/api/activity').then(activity => {
+  //   const dom = activity.map(user => {
+  //     // return $("<div/>").html(user.username);
+  //     // return $("<p>" + user.likes + "</p>");
+  //     return $("<p>" + user.ratings + "</p>");
+>>>>>>> master
   function renderPostsFromDB() {
     $.ajax ({
 
@@ -99,4 +171,13 @@ $(() => {
 
   renderResource();
 
+<<<<<<< HEAD
 });
+=======
+    //$('p .rating').append(dom);
+//   });
+// });
+
+
+});
+>>>>>>> master
