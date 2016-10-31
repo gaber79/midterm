@@ -13,6 +13,8 @@ $(() => {
         resourceTag.append($('<p class="type">' + resource.topic + '</p>'))
         resourceTag.append($('<a class="link "href="' + resource.urls + '">' + resource.urls + '</a>'));
         resourceTag.append($('<p class="type">' + resource.type + '</p>'))
+        resourceTag.append($('<input class="counting" id="inputcounter" type="text" value="0"><button class="counter"><a id="btn" href="#">Like</a></button>'))
+        resourceTag.append($('<span class="star-rating"><input type="radio" name="rating" value="1"><i></i><input type="radio" name="rating" value="2"><i></i><input type="radio" name="rating" value="3"><i></i><input type="radio" name="rating" value="4"><i></i><input type="radio" name="rating" value="5"><i></i></span><strong class="choice">Choose a rating</strong>'))
         let inputform = $('<form method="post" action="/api/comments/">');
         resourceTag.append(inputform);
         inputform.append($('<input name="resourceid" type="hidden" value="' + resource.resourcesid + '" />'));
