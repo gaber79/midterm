@@ -8,33 +8,28 @@ $(() => {
   //   }
   // });
 
-<<<<<<< HEAD
   // ---------------------------TOGGLE COMMENTS TEXT AREA---------------------------------
 
-  $('button').on("click" ,function(event){
-    $('textarea').slideToggle();
-    $('textarea').trigger("focus");
-    return false;
-  });
+  // $('button').on("click" ,function(event){
+  //   $('textarea').slideToggle();
+  //   $('textarea').trigger("focus");
+  //   return false;
+  // });
 
-  $.get('/api/users').then(users => {
-    const dom = users.map(user => {
-      // return $("<div/>").html(user.username);
-      return $("<p>" + user.username + "</p>");
-    });
-<<<<<<< HEAD
-    //$('body').append(dom);
-  });
+  // $.get('/api/users').then(users => {
+  //   const dom = users.map(user => {
+  //     // return $("<div/>").html(user.username);
+  //     return $("<p>" + user.username + "</p>");
+  //   });
+  //   //$('body').append(dom);
+  // });
 
 //---------------------LOAD COMMENTS ON PAGE----------------------------------------------
-=======
 
     // $('body').append(dom);
-  });
+  // });
 
 
-=======
->>>>>>> userfeature
   // <section class="resource-container">
   //   <article>
   //     <a href="http://google.ca">http://google.ca</a>
@@ -48,7 +43,6 @@ $(() => {
   // <textarea name="text"></textarea>
   function renderResource () {
 
->>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
   $.get('/api/resources').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
@@ -111,8 +105,7 @@ $(() => {
     });
   })
 
-<<<<<<< HEAD
-  });
+ 
 //THIS IS WHAT THE COMMENTS CODE IS GENERATING
   // <section class="resource-container">
   //   <article>
@@ -151,15 +144,13 @@ $(() => {
 
 
 
-  $.get('/api/activity').then(activity => {
-    const dom = activity.map(user => {
-      // return $("<div/>").html(user.username);
-      // return $("<p>" + user.likes + "</p>");
-      return $("<p>" + user.ratings + "</p>");
-=======
+  // $.get('/api/activity').then(activity => {
+  //   const dom = activity.map(user => {
+  //     // return $("<div/>").html(user.username);
+  //     // return $("<p>" + user.likes + "</p>");
+  //     return $("<p>" + user.ratings + "</p>");
   function renderPostsFromDB() {
     $.ajax ({
->>>>>>> userfeature
 
       url: "/comments",
       method: "get",
@@ -172,12 +163,9 @@ $(() => {
 
   renderResource();
 
-<<<<<<< HEAD
     //$('p .rating').append(dom);
-  });
-});
+//   });
+// });
 
 
-=======
 });
->>>>>>> userfeature
