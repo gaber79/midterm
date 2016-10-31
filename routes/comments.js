@@ -32,7 +32,6 @@ module.exports = (knex) => {
       .from('comments')
       .join('resources', 'comments.resourcesid', '=', 'resources.resourcesid')
       .where('type', '=', 'video')
-      .groupBy('resourcesid')
       .then((results) => {
         res.json(results);
       });

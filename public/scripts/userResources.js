@@ -13,7 +13,7 @@ $(() => {
   // <textarea name="text"></textarea>
   function renderResource () {
 
-  $.get('/users/:id').then(resources => {
+  $.get('/users/1').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
     const dom = resources.forEach(resource => {

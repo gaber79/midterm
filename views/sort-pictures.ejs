@@ -2,15 +2,15 @@
 <html>
 <head>
 <title>Resorcerer</title>
-<br>
 
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script type="text/javascript" src="/scripts/picture.js"></script>
 
-
+<link rel="stylesheet" href="../styles/header.css" type="text/css" />
 <link rel="stylesheet" href="/styles/welcome.css" type="text/css" />
 </head>
 <body>
+<% include ../views/partials/_header %>
 Welcome to Resourcerer!
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Sort By...</button>
@@ -19,7 +19,12 @@ Welcome to Resourcerer!
     <a href="/filter-by-pictures" class="sortpics">Pictures</a>
     <a href="/filter-by-video" class="sortvids">Videos</a>
   </div>
+
+
+</body>
 <script type="text/javascript">
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
   /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
@@ -38,7 +43,6 @@ window.onclick = function(event) {
     }
   }
 }
-</script>
 
-</body>
+</script>
 </html>
