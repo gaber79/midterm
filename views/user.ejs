@@ -3,19 +3,19 @@
 <head>
 <title>Resorcerer</title>
   <script type="text/javascript">
-  $(':radio').change(
-  function(){
-    $('.choice').text( $(this).val() + 'stars' );
-  })
+    $(':radio').change(
+    function(){
+      $('.choice').text( $(this).val() + 'stars' );
+    })
   </script>
- <script type="text/javascript">
+  <script type="text/javascript">
     /* When the user clicks on the button,
-  toggle between hiding and showing the dropdown content */
-  function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-  }
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(event) {
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
       var i;
@@ -29,10 +29,10 @@
   }
   </script>
   <script type="text/javascript">
-  document.getElementById('btn').onclick = function() {
-  var input = document.getElementById('inputcounter');
-  input.value = parseInt(input.value) + 1;
-  };
+    document.getElementById('btn').onclick = function() {
+    var input = document.getElementById('inputcounter');
+    input.value = parseInt(input.value) + 1;
+    };
   </script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/scripts/userResources.js"></script>

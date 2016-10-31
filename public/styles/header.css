@@ -6,8 +6,9 @@
 }
 
 #search-bar {
-  float: center;
+  float: left;
   width: 45%;
+  display: inline;
   background-color: #f2f2f2;
 }
 

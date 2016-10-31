@@ -72,59 +72,19 @@ app.get("/", (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // -------------------------------------------------------------------------------- end of index
 
-// search page
-app.get("/search", (req, res) => {
 
- let searchTerm = req.query.search;
-//run query for search term
- knex
-   .select('*')
-   .from('resources')
-   .where('urls', 'like', `%${searchTerm}%`)
-   .orWhere('type', 'like', `%${searchTerm}%`)
-   .orWhere('topic', 'like', `%${searchTerm}%`)
-   .then((results) => {
-     res.render("searchoutput", {results});
-   }, function errorCb(err) {
-     throw err;
-   });
-=======
-// SEARCH RESULTS
-app.get("/search", (req, res) => {
 
-  let searchTerm = req.query.search;
- //run query for search term
-  knex
-    .select('*')
-    .from('resources')
-    .where('urls', 'like', `%${searchTerm}%`)
-    .orWhere('type', 'like', `%${searchTerm}%`)
-    .orWhere('topic', 'like', `%${searchTerm}%`)
-    .then((results) => {
-      // console.log(results);
-      res.render('search-results', results);
-    }, function errorCb(err) {
-      throw err;
-  })
-})
 // -------------------------------------------------------------------------------- end of index
 
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
->>>>>>> master
-});
-
+// login post. creates a cookie for user. --------------------------------------------user section
 app.get("/login", (req, res) => {
   res.render("login");
 })
 
 
   
-  // login post. creates a cookie for user. --------------------------------------------user section
   app.post("/login", (req, res) => {
     knex
       .select("username")
@@ -140,13 +100,6 @@ app.get("/login", (req, res) => {
         }
       });
   })
-<<<<<<< HEAD
-=======
-  
->>>>>>> master
-
-
-
 
   // ----------------------------------------------------------------------------------end of user section
 
@@ -176,10 +129,6 @@ app.get("/login", (req, res) => {
       })
   });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   // post new resource
   app.post("/resources", (req, res) => {
     var newResource = {
@@ -204,19 +153,8 @@ app.get("/login", (req, res) => {
         })
   });
 
-
-  // get resources
-  // app.get("/resources", (req, res) => {
-  //   app.use("/api/resources", resourcesRoutes(knex));
-  //   res.render("index");
-  // });
-
   // -----------------------------------------------------------------------end of resource section
-<<<<<<< HEAD
-=======
- 
 
->>>>>>> master
 
 
   // sorting routes-----------------------------------------------------------------------start of sort section
@@ -236,6 +174,23 @@ app.get("/login", (req, res) => {
     res.render("sort-pictures");
   });
 
+ app.get("/search", (req, res) => {
+
+ let searchTerm = req.query.search;
+//run query for search term
+ knex
+   .select('*')
+   .from('resources')
+   .where('urls', 'like', `%${searchTerm}%`)
+   .orWhere('type', 'like', `%${searchTerm}%`)
+   .orWhere('topic', 'like', `%${searchTerm}%`)
+   .then((results) => {
+      // res.json(results)
+     res.render("search-output", {results});
+   // }, function errorCb(err) {
+   //   throw err;
+   });
+ })
 
 /*
 GET /comments

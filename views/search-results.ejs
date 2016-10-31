@@ -1,29 +1,21 @@
-<<<<<<< HEAD
-=======
-<% include partials/_header %>
+<head>
+<title>Resorcerer</title>
 
->>>>>>> master
-<section class="search-output">
-  <% results.forEach(function(result){ %>
-    <% if (result) { %>
-      <p>
-        <a href="<%= result.urls %>"><%= JSON.stringify(result) %></a>
-        <%= result.urls %>
-        <%= result.type %>
-        <%= result.topic %>
-      </p>
-    <% } else { %>
-      <p>
-        <h2>No Results, Brah!</h2>
-      </p>
-    <% } %>
-  <% }); %>
-<<<<<<< HEAD
-</section> 
-=======
-</section>
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+<script type="text/javascript" src="/scripts/search.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="/styles/welcome.css" type="text/css" />
+<link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
+</head>
+
+<body>
+
+<% include ../views/partials/_header %>
 
 
-<% include partials/_footer %>
-</section> 
->>>>>>> master
+
+
+</body>
