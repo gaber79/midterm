@@ -94,7 +94,7 @@ $(() => {
       url: "/comments/sortvids",
       method: "get",
       success: function(data) {
-        console.log(data);
+        // console.log(data);
         renderResource(data);
       }
     });

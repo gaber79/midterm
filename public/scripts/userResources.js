@@ -1,23 +1,12 @@
 $(() => {
 
-  // <section class="resource-container">
-  //   <article>
-  //     <a href="http://google.ca">http://google.ca</a>
-  //     <ul>
-  //       <li>Comment 1</li>
-  //       <li>Comment 2</li>
-  //     </ul>
-  //   </article>
-  // </section>
-  //<form method = "post" action = "/tweets/">
-  // <textarea name="text"></textarea>
   function renderResource () {
 
-  $.get('/users/1').then(resources => {
+  $.get('/api/users/1').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
-
+    console.log("this is being printed in resources. ------------=============")
     const dom = resources.forEach(resource => {
-      // console.log(resource)
+        console.log("----------------------->",resource)
         let resourceTag = $("<article>").addClass('each-resource');
 
         resourceTag.append($('<img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png" width="80" height="80">'));
@@ -78,7 +67,7 @@ $(() => {
   function renderPostsFromDB() {
     $.ajax ({
 
-      url: "/users/:id",
+      url: "/users/1",
       method: "get",
       success: function(data) {
         // console.log(data);

@@ -94,7 +94,7 @@ $(() => {
       method: "get",
       success: function(data) {
         console.log(data);
-        // renderResource(data);
+        renderResource(data);
       }
     });
   }

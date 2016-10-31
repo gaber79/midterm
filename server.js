@@ -75,8 +75,21 @@ app.get("/", (req, res) => {
 // -------------------------------------------------------------------------------- end of index
 
 // search page
-app.post("/search", (req, res) => {
-  res.render("index");
+app.get("/search", (req, res) => {
+
+ let searchTerm = req.query.search;
+//run query for search term
+ knex
+   .select('*')
+   .from('resources')
+   .where('urls', 'like', `%${searchTerm}%`)
+   .orWhere('type', 'like', `%${searchTerm}%`)
+   .orWhere('topic', 'like', `%${searchTerm}%`)
+   .then((results) => {
+     res.render("searchoutput", {results});
+   }, function errorCb(err) {
+     throw err;
+   });
 });
 
 app.get("/login", (req, res) => {
@@ -104,21 +117,6 @@ app.get("/login", (req, res) => {
 
 
 
-  // where do you go after login. to user page
-  app.get("/users/1", (req, res) => {
-    knex
-      .select('*')
-      .from('user_activity')
-      .join('comments', 'user_activity.userid', '=', 'comments.userid')
-      .where('comments.userid', '=', '1')
-      .then((results) => {
-        // console.log(results)
-        res.json(results);
-        res.render('user')
-      // var username = req.param.id
-      // res.redirect("/users/" + username);
-      })
-  })
 
   // ----------------------------------------------------------------------------------end of user section
 
@@ -184,19 +182,21 @@ app.get("/login", (req, res) => {
 
 
   // sorting routes-----------------------------------------------------------------------start of sort section
-
+  app.get("/userprofile", (req, res) => {
+    res.render("user")
+  });
   app.post("/comment", (req, res) => {
   res.redirect("index");
   });
   app.get("/filter-by-video", (req, res) => {
     res.render("sort-video");
-  })
+  });
   app.get("/filter-by-links", (req, res) => {
     res.render("sort-links");
-  })
+  });
   app.get("/filter-by-pictures", (req, res) => {
     res.render("sort-pictures");
-  })
+  });
 
 
 /*
