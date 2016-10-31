@@ -73,12 +73,10 @@ app.get("/", (req, res) => {
 }
 });
 
-<<<<<<< HEAD
 // SEARCH RESULTS
 app.get("/search", (req, res) => {
 
   let searchTerm = req.query.search;
-  debugger;
  //run query for search term
   knex
     .select('*')
@@ -88,23 +86,18 @@ app.get("/search", (req, res) => {
     .orWhere('topic', 'like', `%${searchTerm}%`)
     .then((results) => {
       // console.log(results);
-      debugger;
       res.render('search-results', results);
-      debugger;
     }, function errorCb(err) {
       throw err;
   })
-=======
+  });
 // -------------------------------------------------------------------------------- end of index
 
 // search page
 app.post("/search", (req, res) => {
   res.render("index");
->>>>>>> userfeature
 });
 
-<<<<<<< HEAD
-=======
 app.get("/login", (req, res) => {
   res.render("login");
 })
@@ -127,14 +120,7 @@ app.get("/login", (req, res) => {
         }
       });
   })
-<<<<<<< HEAD
   
-  app.get("/users")
-=======
-
-
->>>>>>> userfeature
-
   // where do you go after login. to user page
   app.get("/users/1", (req, res) => {
     knex
@@ -179,15 +165,8 @@ app.get("/login", (req, res) => {
       })
   });
 
-<<<<<<< HEAD
   // post new resource
   app.post("/resources", (req, res) => {
-<<<<<<< HEAD
-=======
-
-  // post new resource
-  app.post("/resources", (req, res) => {
->>>>>>> userfeature
     var newResource = {
       urls: req.body.urls,
       type: req.body.type,
@@ -204,10 +183,7 @@ app.get("/login", (req, res) => {
             .limit(1)
             .then( function (newresult) {
               var resID = newresult[0].resourcesid
-<<<<<<< HEAD
-=======
           // res.json({sucess: true, message: 'ok' });
->>>>>>> userfeature
           res.redirect("/resources/" + resID)
         });
         })
@@ -221,18 +197,6 @@ app.get("/login", (req, res) => {
   // });
 
   // -----------------------------------------------------------------------end of resource section
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    res.redirect("/index")
-  })
->>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
-
->>>>>>> 442c9dba36d784089d8d9548b9e6f537f9105d68
-=======
->>>>>>> userfeature
-=======
-
 
   // sorting routes-----------------------------------------------------------------------start of sort section
 
@@ -249,8 +213,6 @@ app.get("/login", (req, res) => {
     res.render("sort-pictures");
   })
 
-
->>>>>>> userfeature
 /*
 GET /comments
 POST /comments
