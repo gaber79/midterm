@@ -25,6 +25,39 @@ module.exports = (knex) => {
 
     });
 
+    
+  router.get("/sortvids", (req, res) => {
+    knex
+      .select('*')
+      .from('comments')
+      .join('resources', 'comments.resourcesid', '=', 'resources.resourcesid')
+      .where('type', '=', 'video')
+      .groupBy('resourcesid')
+      .then((results) => {
+        res.json(results);
+      });
+  });
+  router.get("/sortlinks", (req, res) => {
+    knex
+      .select('*')
+      .from('comments')
+      .join('resources', 'comments.resourcesid', '=', 'resources.resourcesid')
+      .where('type', '=', 'link')
+      .then((results) => {
+        res.json(results);
+      });
+  });
+  router.get("/sortpictures", (req, res) => {
+    knex
+      .select('*')
+      .from('comments')
+      .join('resources', 'comments.resourcesid', '=', 'resources.resourcesid')
+      .where('type', '=', 'picture')
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
 
   return router;
 }

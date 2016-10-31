@@ -13,7 +13,7 @@ $(() => {
   // <textarea name="text"></textarea>
   function renderResource () {
 
-  $.get('/users/:id').then(resources => {
+  $.get('/api/comments/sortvids').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
     const dom = resources.forEach(resource => {
@@ -75,18 +75,30 @@ $(() => {
     });
   })
 
+  
+  $('button.sortvids').on('click', function (event){
+    event.preventDefault();
+    $.ajax ({
+      url: "/api/comments/sortvids",
+      method: 'get',
+      data: $(this).serialize(),
+        success: function (data) {
+          renderResource(data);
+        }
+    });
+  });
+
   function renderPostsFromDB() {
     $.ajax ({
 
-      url: "/users/:id",
+      url: "/comments/sortvids",
       method: "get",
       success: function(data) {
-        // console.log(data);
+        console.log(data);
         renderResource(data);
       }
     });
   }
-
   renderResource();
 
 });

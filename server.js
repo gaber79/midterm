@@ -107,14 +107,15 @@ app.get("/login", (req, res) => {
   // where do you go after login. to user page
   app.get("/users/:id", (req, res) => {
     knex
-      .select('comments.resourcesid')
+      .select('*')
       .from('user_activity')
       .join('comments', 'user_activity.userid', '=', 'comments.userid')
       .where('comments.userid', '=', req.params.id)
       .groupBy('comments.resourcesid')
       .then((results) => {
-        console.log(results)
-        // res.render('resources_show', results)
+        // console.log(results)
+        res.json(results);
+        res.render('user', results)
       // var username = req.param.id
       // res.redirect("/users/" + username);
       })
@@ -181,6 +182,24 @@ app.get("/login", (req, res) => {
   // });
 
   // -----------------------------------------------------------------------end of resource section
+
+
+  // sorting routes-----------------------------------------------------------------------start of sort section
+
+  app.post("/comment", (req, res) => {
+  res.redirect("index");
+  });
+  app.get("/filter-by-video", (req, res) => {
+    res.render("sort-video");
+  })
+  app.get("/filter-by-links", (req, res) => {
+    res.render("sort-links");
+  })
+  app.get("/filter-by-pictures", (req, res) => {
+    res.render("sort-pictures");
+  })
+
+
 /*
 GET /comments
 POST /comments
