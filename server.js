@@ -59,16 +59,21 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
 
-// Home page
+
+// Home page ----------------------------------------------------------------------index page
 app.get("/", (req, res) => {
   if(!req.session.username) {
     res.redirect("/login")
 } else {
-
-  res.render("index");
+  let templateVars = {
+    username: req.session.username
+  }
+  console.log("This cookie is in the index page. ", req.session.username);
+  res.render("index", templateVars);
 }
 });
 
+<<<<<<< HEAD
 // SEARCH RESULTS
 app.get("/search", (req, res) => {
 
@@ -89,6 +94,13 @@ app.get("/search", (req, res) => {
     }, function errorCb(err) {
       throw err;
   })
+=======
+// -------------------------------------------------------------------------------- end of index
+
+// search page
+app.post("/search", (req, res) => {
+  res.render("index");
+>>>>>>> userfeature
 });
 
 <<<<<<< HEAD
@@ -110,7 +122,7 @@ app.get("/login", (req, res) => {
         // res.json(results);
         if (results.length > 0) { // found a user
           req.session.username = results[0].username;
-          // console.log("!!!!!!!!", results)
+          // console.log("!!!!!!!!", req.session.username)
           res.redirect("/");
         }
       });
@@ -124,14 +136,16 @@ app.get("/login", (req, res) => {
 >>>>>>> userfeature
 
   // where do you go after login. to user page
-  app.get("/users/:id", (req, res) => {
+  app.get("/users/1", (req, res) => {
     knex
-      .select ('*')
+      .select('*')
       .from('user_activity')
-      .where('user_activity.userid', '=', req.params.id)
+      .join('comments', 'user_activity.userid', '=', 'comments.userid')
+      .where('comments.userid', '=', '1')
       .then((results) => {
-        console.log(results)
-        res.render('resources_show', results)
+        // console.log(results)
+        res.json(results);
+        res.render('user')
       // var username = req.param.id
       // res.redirect("/users/" + username);
       })
@@ -208,6 +222,7 @@ app.get("/login", (req, res) => {
 
   // -----------------------------------------------------------------------end of resource section
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     res.redirect("/index")
   })
@@ -215,6 +230,26 @@ app.get("/login", (req, res) => {
 
 >>>>>>> 442c9dba36d784089d8d9548b9e6f537f9105d68
 =======
+>>>>>>> userfeature
+=======
+
+
+  // sorting routes-----------------------------------------------------------------------start of sort section
+
+  app.post("/comment", (req, res) => {
+  res.redirect("index");
+  });
+  app.get("/filter-by-video", (req, res) => {
+    res.render("sort-video");
+  })
+  app.get("/filter-by-links", (req, res) => {
+    res.render("sort-links");
+  })
+  app.get("/filter-by-pictures", (req, res) => {
+    res.render("sort-pictures");
+  })
+
+
 >>>>>>> userfeature
 /*
 GET /comments

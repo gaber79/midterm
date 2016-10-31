@@ -26,16 +26,17 @@
 =======
 <!DOCTYPE html>
 <html lang="en">
-  <head></head>
-  <body style="font-size:20px; padding:50px;">
+  <head>
+    <link rel="stylesheet" href="/styles/welcome.css" type="text/css" />
+<link rel="stylesheet" href="../styles/header.css" type="text/css" />
+  </head>
+  <body style="font-size:15px; padding:30px;">
+  <% include ../views/partials/_header %>
     <form action="/resources" method="POST">
-      <label for="urls">Enter a URL:</label>
-      <input id="urls" type="text" name="urls" placeholder="http://" style="width: 300px"> <br>
-      <label for="type">Enter the type of URL it is: </label>
-      <input id="type" type="text" name="type"> <br>
-      <label for="topic">Enter topic for the url :</label>
-      <input id="topic" type="text" name="topic"><br>ss
-      <input type="submit" value="Submit">
+      <label for="urls">Enter a URL:</label><input class="form" id="urls" type="text" name="urls" placeholder="http://" style="width: 300px"> <br>
+      <label for="type">Enter the type of URL it is: </label><input class="form" id="type" type="text" name="type"> <br>
+      <label for="topic">Enter topic for the url :</label><input class="form" id="topic" type="text" name="topic"><br><br>
+      <input class="form" type="submit" value="Submit" style="background: green;width: 100px;height:40px;font-size: 1.5em;">
     </form>
 >>>>>>> userfeature
   </body>

@@ -1,40 +1,5 @@
 $(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/users"
-  // }).done((users) => {
-  //   for(user of users) {
-  //     $("<div>").text(user.name).appendTo($("body"));
-  //   }
-  // });
 
-<<<<<<< HEAD
-  // ---------------------------TOGGLE COMMENTS TEXT AREA---------------------------------
-
-  $('button').on("click" ,function(event){
-    $('textarea').slideToggle();
-    $('textarea').trigger("focus");
-    return false;
-  });
-
-  $.get('/api/users').then(users => {
-    const dom = users.map(user => {
-      // return $("<div/>").html(user.username);
-      return $("<p>" + user.username + "</p>");
-    });
-<<<<<<< HEAD
-    //$('body').append(dom);
-  });
-
-//---------------------LOAD COMMENTS ON PAGE----------------------------------------------
-=======
-
-    // $('body').append(dom);
-  });
-
-
-=======
->>>>>>> userfeature
   // <section class="resource-container">
   //   <article>
   //     <a href="http://google.ca">http://google.ca</a>
@@ -48,8 +13,7 @@ $(() => {
   // <textarea name="text"></textarea>
   function renderResource () {
 
->>>>>>> ccc17cc58db68f24f22172d7ee1ad981a70735f0
-  $.get('/api/resources').then(resources => {
+  $.get('/api/comments/sortvids').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
     const dom = resources.forEach(resource => {
@@ -111,57 +75,23 @@ $(() => {
     });
   })
 
-<<<<<<< HEAD
+  
+  $('button.sortvids').on('click', function (event){
+    event.preventDefault();
+    $.ajax ({
+      url: "/api/comments/sortvids",
+      method: 'get',
+      data: $(this).serialize(),
+        success: function (data) {
+          renderResource(data);
+        }
+    });
   });
-//THIS IS WHAT THE COMMENTS CODE IS GENERATING
-  // <section class="resource-container">
-  //   <article>
-  //     <a href="http://google.ca">http://google.ca</a>
-  //     <ul>
-  //       <li>Comment 1</li>
-  //       <li>Comment 2</li>
-  //     </ul>
-  //   </article>
-  // </section>
 
-
-
-// ---------------------SEARCH PAGE AND HIDE UNLIKE SEARCHTERM---------------------------
-  // $('.search-button').on("click" ,function(event){
-  //   //hide function
-  //   let searchTerm = $('input#search-bar')
-  //   let tag = $('<a>').attr('href')
-  //   let section =
-  //   //  knex
-  //   //   .select("*")
-  //   //   .from("resources")
-  //   //   // .where('urls', 'like', '%'+searchTerm+'%')
-  //   //   .where('urls', 'like', `%${searchTerm}%`)
-  //   //   .orWhere('type', 'like', `%${searchTerm}%`)
-  //   //   .orWhere('topic', 'like', `%${searchTerm}%`)
-  //   //   .then((results) => {
-  //   //     results.hide("fast");
-  //   //     // res.redirect("search-results");
-  //   // });
-
-  //   if(searchTerm){}
-
-  // });
-
-
-
-
-  $.get('/api/activity').then(activity => {
-    const dom = activity.map(user => {
-      // return $("<div/>").html(user.username);
-      // return $("<p>" + user.likes + "</p>");
-      return $("<p>" + user.ratings + "</p>");
-=======
   function renderPostsFromDB() {
     $.ajax ({
->>>>>>> userfeature
 
-      url: "/comments",
+      url: "/comments/sortvids",
       method: "get",
       success: function(data) {
         console.log(data);
@@ -169,15 +99,6 @@ $(() => {
       }
     });
   }
-
   renderResource();
 
-<<<<<<< HEAD
-    //$('p .rating').append(dom);
-  });
 });
-
-
-=======
-});
->>>>>>> userfeature
