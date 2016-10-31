@@ -15,5 +15,16 @@ module.exports = (knex) => {
     });
   });
 
+  router.get("/:id/comments", (req, res) => {
+    knex
+      .select("*")
+      .from("comments")
+      .where({ resourcesid: req.params.id })
+      .then((results) => {
+        // console.log('test db connect.')
+        res.json(results);
+    });
+  });
+
   return router;
 }

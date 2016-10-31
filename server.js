@@ -43,7 +43,6 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
-app.set('view options', {layout: 'other'});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -73,24 +72,6 @@ app.get("/", (req, res) => {
 }
 });
 
-// SEARCH RESULTS
-app.get("/search", (req, res) => {
-
-  let searchTerm = req.query.search;
- //run query for search term
-  knex
-    .select('*')
-    .from('resources')
-    .where('urls', 'like', `%${searchTerm}%`)
-    .orWhere('type', 'like', `%${searchTerm}%`)
-    .orWhere('topic', 'like', `%${searchTerm}%`)
-    .then((results) => {
-      // console.log(results);
-      res.render('search-results', results);
-    }, function errorCb(err) {
-      throw err;
-  })
-  });
 // -------------------------------------------------------------------------------- end of index
 
 // search page
@@ -120,7 +101,9 @@ app.get("/login", (req, res) => {
         }
       });
   })
-  
+
+
+
   // where do you go after login. to user page
   app.get("/users/1", (req, res) => {
     knex
@@ -165,6 +148,7 @@ app.get("/login", (req, res) => {
       })
   });
 
+
   // post new resource
   app.post("/resources", (req, res) => {
     var newResource = {
@@ -198,6 +182,7 @@ app.get("/login", (req, res) => {
 
   // -----------------------------------------------------------------------end of resource section
 
+
   // sorting routes-----------------------------------------------------------------------start of sort section
 
   app.post("/comment", (req, res) => {
@@ -213,6 +198,7 @@ app.get("/login", (req, res) => {
     res.render("sort-pictures");
   })
 
+
 /*
 GET /comments
 POST /comments
@@ -222,7 +208,6 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
-
 
 
 
