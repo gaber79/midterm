@@ -49,8 +49,8 @@ $(() => {
   }
 
 
-
-  $('body').on('submit', 'form', function (event) {
+//FIX <<< BE MORE SPECIFIC
+  $('section.resource-container').on('submit', 'form', function (event) {
     event.preventDefault();
     console.log('form values:', $(this).serialize());
     console.log('event values:', JSON.stringify(event));

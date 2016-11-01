@@ -59,8 +59,8 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
 
-
 // Home page ----------------------------------------------------------------------index page
+
 app.get("/", (req, res) => {
   if(!req.session.username) {
     res.redirect("/login")
@@ -72,6 +72,7 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
   }
 });
+
 
 // SEARCH RESULTS
 app.get("/search", (req, res) => {
@@ -85,140 +86,22 @@ app.get("/search", (req, res) => {
     .orWhere('type', 'like', `%${searchTerm}%`)
     .orWhere('topic', 'like', `%${searchTerm}%`)
     .then((results) => {
-      // console.log(results);
-      res.render('search-results', results);
+      res.render("searchoutput", {results});
+      // res.json(results);
     }, function errorCb(err) {
       throw err;
-  })
-})
-// -------------------------------------------------------------------------------- end of index
-
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
+    });
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-})
+//SHARE GET & POST
+app.get("/share", (req, res) => {
+  res.render("share-page.ejs");
+});
 
-
-  
-  // login post. creates a cookie for user. --------------------------------------------user section
-  app.post("/login", (req, res) => {
-    knex
-      .select("username")
-      .from("users")
-      .where({username: req.body.username})
-      .then((results) => {
-        // console.log('test db connect.')
-        // res.json(results);
-        if (results.length > 0) { // found a user
-          req.session.username = results[0].username;
-          // console.log("!!!!!!!!", req.session.username)
-          res.redirect("/");
-        }
-      });
-  })
-  
-
-
-
-  // where do you go after login. to user page
-  app.get("/users/1", (req, res) => {
-    knex
-      .select('*')
-      .from('user_activity')
-      .join('comments', 'user_activity.userid', '=', 'comments.userid')
-      .where('comments.userid', '=', '1')
-      .then((results) => {
-        // console.log(results)
-        res.json(results);
-        res.render('user')
-      // var username = req.param.id
-      // res.redirect("/users/" + username);
-      })
-  })
-
-  // ----------------------------------------------------------------------------------end of user section
-
-  // resources new form -----------------------------------------------------------------------resource section
-  app.get("/resources/new", (req, res) => {
-    // app.use("/api/resources", resourcesRoutes(knex));
-    // console.log("it works here. you got it.")
-    res.render("resourceform");
-  });
-  
-  app.get("/resources/:id", (req, res) => {
-    knex 
-      .select('*')
-      .from('resources')
-      .where('resourcesid', '=', req.params.id)
-      .limit(1)
-      .then((results) => {
-        // console.log(results[0])
-        let templateVars = {
-          resourcesid: req.params.id,
-          urls: results[0].urls,
-          type: results[0].type,
-          topic: results[0].topic
-        }
-        // console.log(templateVars)
-      res.render("resources_show", templateVars)
-      })
-  });
-
-  // post new resource
-  app.post("/resources", (req, res) => {
-    var newResource = {
-      urls: req.body.urls,
-      type: req.body.type,
-      topic: req.body.topic
-    }
-      knex
-        .insert(newResource)
-        .into('resources')
-        .then( function (result) {
-          knex
-            .select('*')
-            .from('resources')
-            .orderBy('resourcesid', 'desc')
-            .limit(1)
-            .then( function (newresult) {
-              var resID = newresult[0].resourcesid
-          // res.json({sucess: true, message: 'ok' });
-          res.redirect("/resources/" + resID)
-        });
-        })
-  });
-
-
-  // get resources
-  // app.get("/resources", (req, res) => {
-  //   app.use("/api/resources", resourcesRoutes(knex));
-  //   res.render("index");
-  // });
-
-  // -----------------------------------------------------------------------end of resource section
- 
-
-
-
-  // sorting routes-----------------------------------------------------------------------start of sort section
-
-  app.post("/comment", (req, res) => {
-  res.redirect("index");
-  });
-  app.get("/filter-by-video", (req, res) => {
-    res.render("sort-video");
-  })
-  app.get("/filter-by-links", (req, res) => {
-    res.render("sort-links");
-  })
-  app.get("/filter-by-pictures", (req, res) => {
-    res.render("sort-pictures");
-  })
-
+app.post("/share", (req, res) => {
+  let urlinput = req.body.urlinput;
+  let topicinput = req.body.topicinput;
+});
 
 /*
 GET /comments
@@ -229,9 +112,6 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
-
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

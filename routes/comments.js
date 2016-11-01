@@ -25,7 +25,7 @@ module.exports = (knex) => {
 
     });
 
-    
+
   router.get("/sortvids", (req, res) => {
     knex
       .select('*')

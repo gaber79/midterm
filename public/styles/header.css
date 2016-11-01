@@ -26,3 +26,7 @@
   margin-right: 2em;
   height: 20px;
 }
+
+div#page {
+  padding-top: 90px;
+}

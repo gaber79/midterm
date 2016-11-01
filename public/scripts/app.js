@@ -79,8 +79,8 @@ $(() => {
   }
 
 
-
-  $('body').on('submit', 'form', function (event) {
+//COMMENT BUTTON
+  $('section.resource-container').on('submit', 'form', function (event) {
     event.preventDefault();
     console.log('form values:', $(this).serialize());
     console.log('event values:', JSON.stringify(event));
@@ -105,7 +105,7 @@ $(() => {
     });
   })
 
- 
+
 //THIS IS WHAT THE COMMENTS CODE IS GENERATING
   // <section class="resource-container">
   //   <article>
@@ -141,6 +141,7 @@ $(() => {
 
   // });
 
+// --------------------DIDN'T GO WITH THIS APPROACH--------------------
 
 
 
