@@ -63,7 +63,7 @@ app.use("/api/activity", activityRoutes(knex));
 
 app.get("/", (req, res) => {
   if(!req.session.username) {
-    res.redirect("/login")
+    res.render("login");
   } else {
     let templateVars = {
     username: req.session.username
@@ -87,7 +87,7 @@ app.get("/search", (req, res) => {
     .orWhere('topic', 'like', `%${searchTerm}%`)
     .then((results) => {
       res.render("searchoutput", {results});
-      // res.json(results);
+      res.json(results);
     }, function errorCb(err) {
       throw err;
     });
