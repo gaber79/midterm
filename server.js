@@ -58,11 +58,42 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// search page
-app.post("/search", (req, res) => {
-  res.render("index");
+// // search page
+
+// //change from post to get
+// app.post("/search", (req, res) => {
+//   res.render("index");
+// });
+
+
+// SEARCH RESULTS
+app.get("/search", (req, res) => {
+
+  let searchTerm = req.query.search;
+ //run query for search term
+  knex
+    .select('*')
+    .from('resources')
+    .where('urls', 'like', `%${searchTerm}%`)
+    .orWhere('type', 'like', `%${searchTerm}%`)
+    .orWhere('topic', 'like', `%${searchTerm}%`)
+    .then((results) => {
+      res.render("searchoutput", {results});
+      // res.json(results);
+    // }, function errorCb(err) {
+    //   throw err;
+    });
 });
 
+//SHARE GET & POST
+app.get("/share", (req, res) => {
+  res.render("../views/share-page.ejs");
+});
+
+app.post("/share", (req, res) => {
+  let urlinput = req.body.urlinput;
+  let topicinput = req.body.topicinput;
+});
 /*
 GET /comments
 POST /comments

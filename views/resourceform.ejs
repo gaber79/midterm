@@ -1,0 +1,40 @@
+
+<html>
+<head>
+  <title>Create Resource</title>
+</head>
+<body>
+<h2>Create Resource</h2>
+<form method="POST" action="/resources">
+  <p>
+    <label>URL </label>
+    <input type="text" name="urls" />
+  </p>
+  <p>
+    <label>Type </label>
+    <input type="text" name="type" />
+  </p>
+  <p>
+    <label>Topic </label>
+    <input type="text" name="topic" />
+  </p>
+  <p>
+    <input type="submit" name="createResource" value="resources" />
+  </p>
+  </form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/styles/welcome.css" type="text/css" />
+<link rel="stylesheet" href="../styles/header.css" type="text/css" />
+  </head>
+  <body style="font-size:15px; padding:30px;">
+  <% include ../views/partials/_header %>
+    <form action="/resources" method="GET">
+      <label for="urls">Enter a URL:</label><input class="form" id="urls" type="text" name="urls" placeholder="http://" style="width: 300px"> <br>
+      <label for="type">Enter the type of URL it is: </label><input class="form" id="type" type="text" name="type"> <br>
+      <label for="topic">Enter topic for the url :</label><input class="form" id="topic" type="text" name="topic"><br><br>
+      <input class="form" type="submit" value="Submit" style="background: green;width: 100px;height:40px;font-size: 1.5em;">
+    </form>
+  </body>
+</html>

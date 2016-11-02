@@ -7,6 +7,7 @@ module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
+      // where clause >>> access search
       .select("*")
       .from("resources")
       .then((results) => {
