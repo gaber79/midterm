@@ -5,6 +5,7 @@ const ENV         = process.env.NODE_ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const cookieSession = require("cookie-session");
 const app         = express();
 
 console.log('Running in "%s" mode', ENV);
@@ -20,7 +21,11 @@ const knexLogger  = require('knex-logger');
 
 
 
-
+// cookie session setup
+app.use(cookieSession({
+  name: 'session',
+  keys: ['secret']
+}));
 // console.log(process.env);
 
 // Seperated Routes for each Resource
@@ -38,6 +43,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
+app.set('view options', {layout: 'other'});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -54,8 +60,17 @@ app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
 
 // Home page
+
 app.get("/", (req, res) => {
-  res.render("index");
+  if(!req.session.username) {
+    res.redirect("/login")
+  } else {
+    let templateVars = {
+    username: req.session.username
+  }
+  console.log("This cookie is in the index page. ", req.session.username);
+  res.render("index", templateVars);
+  }
 });
 
 // // search page
@@ -80,20 +95,21 @@ app.get("/search", (req, res) => {
     .then((results) => {
       res.render("searchoutput", {results});
       // res.json(results);
-    // }, function errorCb(err) {
-    //   throw err;
+    }, function errorCb(err) {
+      throw err;
     });
 });
 
 //SHARE GET & POST
 app.get("/share", (req, res) => {
-  res.render("../views/share-page.ejs");
+  res.render("share-page.ejs");
 });
 
 app.post("/share", (req, res) => {
   let urlinput = req.body.urlinput;
   let topicinput = req.body.topicinput;
 });
+
 /*
 GET /comments
 POST /comments
@@ -103,8 +119,6 @@ GET /comments/:id/edit
 PUT /comments/:id
 DELETE /comments/:id
 */
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
