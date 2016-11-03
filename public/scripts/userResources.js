@@ -20,7 +20,7 @@ $(() => {
       // console.log(resource)
         let resourceTag = $("<article>").addClass('each-resource');
 
-        resourceTag.append($('<img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png" width="80" height="80">'));
+        resourceTag.append($('<img class="logo" src="https://ih1.redbubble.net/image.120321985.6194/flat,800x800,075,f.u2.jpg" width="80" height="80">'));
         resourceTag.append($('<p class="type">' + resource.topic + '</p>'))
         resourceTag.append($('<a class="link "href="' + resource.urls + '">' + resource.urls + '</a>'));
         resourceTag.append($('<p class="type">' + resource.type + '</p>'))
@@ -49,7 +49,7 @@ $(() => {
   }
 
 
-//FIX <<< BE MORE SPECIFIC
+//FIXED SPECIFICITY - LP
   $('section.resource-container').on('submit', 'form', function (event) {
     event.preventDefault();
     console.log('form values:', $(this).serialize());
@@ -62,12 +62,8 @@ $(() => {
       method: 'post',
       data: $(this).serialize(),
       success: function (data) {
-        // if(commentField.val() === "") {
-        //   alert('No Comment Detected');
-        // }
         formSubmitted.parent().children('ul').prepend("<li>" + commentField.val() + "</li>");
         commentField.val("");
-        // $('body > ul').html(data);
       },
       error: function (data) {
         alert("No Comment!");

@@ -29,4 +29,6 @@
 
 div#page {
   padding-top: 90px;
+  height: 100%;
+  width: 100%;
 }

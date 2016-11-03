@@ -58,6 +58,8 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
+// create search route in routes folder
+//create
 
 // Home page
 
@@ -81,7 +83,7 @@ app.get("/", (req, res) => {
 // });
 
 
-// SEARCH RESULTS
+// SEARCH RESULTS ----------REFACTOR >>> PUT INTO ROUTES FILES IN ROUTES FILE
 app.get("/search", (req, res) => {
 
   let searchTerm = req.query.search;
@@ -94,21 +96,11 @@ app.get("/search", (req, res) => {
     .orWhere('topic', 'like', `%${searchTerm}%`)
     .then((results) => {
       res.render("searchoutput", {results});
-      // res.json(results);
     }, function errorCb(err) {
       throw err;
     });
 });
 
-//SHARE GET & POST
-app.get("/share", (req, res) => {
-  res.render("share-page.ejs");
-});
-
-app.post("/share", (req, res) => {
-  let urlinput = req.body.urlinput;
-  let topicinput = req.body.topicinput;
-});
 
 /*
 GET /comments
