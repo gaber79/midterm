@@ -93,16 +93,6 @@ app.get("/search", (req, res) => {
     });
 });
 
-//SHARE GET & POST
-app.get("/share", (req, res) => {
-  res.render("share-page.ejs");
-});
-
-app.post("/share", (req, res) => {
-  let urlinput = req.body.urlinput;
-  let topicinput = req.body.topicinput;
-});
-
 /*
 GET /comments
 POST /comments
