@@ -58,8 +58,10 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/resources", resourcesRoutes(knex));
 app.use("/api/activity", activityRoutes(knex));
+// create search route in routes folder
+//create
 
-// Home page ----------------------------------------------------------------------index page
+// Home page
 
 app.get("/", (req, res) => {
   if(!req.session.username) {
@@ -73,8 +75,15 @@ app.get("/", (req, res) => {
   }
 });
 
+// // search page
 
-// SEARCH RESULTS
+// //change from post to get
+// app.post("/search", (req, res) => {
+//   res.render("index");
+// });
+
+
+// SEARCH RESULTS ----------REFACTOR >>> PUT INTO ROUTES FILES IN ROUTES FILE
 app.get("/search", (req, res) => {
 
   let searchTerm = req.query.search;
@@ -87,12 +96,19 @@ app.get("/search", (req, res) => {
     .orWhere('topic', 'like', `%${searchTerm}%`)
     .then((results) => {
       res.render("searchoutput", {results});
+<<<<<<< HEAD
       res.json(results);
+=======
+>>>>>>> searchfeature
     }, function errorCb(err) {
       throw err;
     });
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> searchfeature
 /*
 GET /comments
 POST /comments

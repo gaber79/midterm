@@ -6,21 +6,26 @@
     <title>Resorcerer</title>
 <!-- App JS -->
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="/scripts/search.js"></script>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/video.js"></script>
+=======
+    <script type="text/javascript" src="/scripts/share.js"></script>
+>>>>>>> searchfeature
 
 
 <!-- External CSS -->
     <link rel="stylesheet" href="../styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="../styles/layout.css" type="text/css" />
-
-     <link rel="stylesheet" href="../public/styles/share-page.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/welcome.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/share-page.css" type="text/css" />
   </head>
   <body>
 <!-- _HEADER.EJS -->
 
 <!-- NAVIGATION BAR -->
+<<<<<<< HEAD
 
   <nav id="nav-bar-container">
     <a href="/"><img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png"></a>
@@ -38,3 +43,22 @@
       </span>
     </form>
   </nav>
+=======
+    <nav id="nav-bar-container">
+      <img class="logo" src="https://ih1.redbubble.net/image.120321985.6194/flat,800x800,075,f.u2.jpg">
+      <span class="button-container">
+        <a href="/"><button class="home" type="profile">Home</button></a>
+        <a href="/share"><button class="post" type="profile">Post</button></a>
+        <a href="#"><button class="profile" type="profile">Profile</button></a>
+        <a href="/login"><button class="profile" type="profile">Login</button></a>
+      </span>
+        <form action="/search" method="GET">
+          <label for="search"></label>
+           <span class="search-bar-container">
+          <input id="search-bar" id="search" type="text" name="search" placeholder="Search for a topic or URL">
+          <input type="submit" value="Search">
+          </span>
+        </form>
+    </nav>
+  <div id="page">
+>>>>>>> searchfeature
