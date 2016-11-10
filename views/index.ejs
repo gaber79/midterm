@@ -22,6 +22,7 @@ window.onclick = function(event) {
   }
 }
 </script>
+
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script type="text/javascript" src="/scripts/app.js"></script>
 
@@ -34,8 +35,6 @@ window.onclick = function(event) {
 <body>
   <% include ../views/partials/_header %>
   <h2><%= username %>'s resources</h2>
-  <h3>Welcome to Resourcerer!</h3>
-<br>
 
  <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Sort By...</button>
@@ -44,5 +43,11 @@ window.onclick = function(event) {
     <a href="/filter-by-pictures" class="sortpics">Pictures</a>
     <a href="/filter-by-video" class="sortvids">Videos</a>
   </div>
+  </div>
+  <div class="row">
+  </div>
+
+
 </body>
+
 </html>

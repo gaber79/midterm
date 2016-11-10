@@ -174,7 +174,8 @@ app.get("/login", (req, res) => {
     res.render("sort-pictures");
   });
 
- app.get("/search", (req, res) => {
+ // SEARCH RESULTS
+app.get("/search", (req, res) => {
 
  let searchTerm = req.query.search;
 //run query for search term
@@ -185,12 +186,12 @@ app.get("/login", (req, res) => {
    .orWhere('type', 'like', `%${searchTerm}%`)
    .orWhere('topic', 'like', `%${searchTerm}%`)
    .then((results) => {
-      // res.json(results)
      res.render("search-output", {results});
-   // }, function errorCb(err) {
-   //   throw err;
+     res.json(results);
+   }, function errorCb(err) {
+     throw err;
    });
- })
+});
 
 /*
 GET /comments

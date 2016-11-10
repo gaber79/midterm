@@ -1,10 +1,3 @@
-html {
-  font-family: courier;
-  color: #696969;
-}
-body {
-  margin-top: 80px;
-}
 article {
   padding-top: 0px;
 }
@@ -12,77 +5,70 @@ img {
   border-radius: 10px;
   display: block;
   margin: 0 auto;
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 input {
   display: block;
-  margin: 0 auto;
+  margin: 5px auto;
 }
 input.form {
   display: inline;: 
 }
-
+div.row {
+  column-count: 4;
+}
 div .container {
   background-color: grey;
   border: 1px solid black;
   border-radius: 10px;
   display: inline-block;
-  float: left;
+  /*float: left;*/
   min-height: 250px;
   /*height: auto;*/
   width: 21%;
-
 }
-
-
 .each-resource {
-  border: 3px solid grey;
+  border: 1px solid grey;
   border-radius: 10px;
   background-color: #d0f4d5;
   display: inline-block;
-  float: left;
+  /*float: left;*/
   min-height: 250px;
   /*height: auto;*/
-  width: 22%;
+  width: 100%;
+  min-width: 250px;
   padding: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  /*margin-left: 10px;*/
+  /*margin-right: 10px;*/
   margin-top: 10px;
 }
-
 .each-resource:hover {
   background-color: #dfdfdf;
 }
-
 section {
   padding-left: 5px;
 }
-
 p.rating {
   padding-bottom: 5px;
   padding-left: 5px;
-
 }
-
 textarea {
   padding-left: 5px;
   padding-right: 5px;
   width: 80%;
   border-radius: 10px;
-  border: 3px solid grey;
+  border: 1px solid grey;
   display: block;
   margin-left: auto;
   margin-right: auto;
   resize: none;
   margin-bottom: 5px;
 }
-
 .logo {
-  border: 3px solid grey;
+  border: 1px solid grey;
   background-color: white;
   margin-bottom: 5px;
 }
-
 a.link {
   font-size: 10px;
  margin: 0 auto;
@@ -95,22 +81,20 @@ p.type {
   text-align: center;
   margin-bottom: 5px;
 }
-
 ul {
-
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
-
 li {
-/*margin-right: 40px;*/
 background-color: white;
 padding: 5px;
-border: 2px solid grey;
+border: 1px solid grey;
 border-radius: 10px;
+margin: 0 auto;
 margin-bottom: 5px;
-width: 80%;
+width: 90%;
 }
-
 .dropbtn {
     margin-right: 10px;
     background-color: #4CAF50;
@@ -120,41 +104,38 @@ width: 80%;
     font-size: 16px;
     border: none;
     cursor: pointer;
-   /* position: absolute;
-    right: 40px;
-    bottom: 20px;
-    width: 130px;*/
 }
 .dropbtn:hover, .dropbtn:focus {
     background-color: #3e8e41;
 }
 .dropdown {
-    float: right;
-    position: relative;
-    display: inline-block;
+    margin: 5px;
+    /*float: right;*/
+    /*position: relative;*/
+    /*display: inline-block;*/
 }
 .dropdown-content {
     display: none;
-    position: absolute;
+    /*position: absolute;*/
     background-color: #f9f9f9;
-    min-width: 160px;
+    width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    right: 0;
+    /*right: 0;*/
 }
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
+    border-bottom: 1px solid black;
     display: block;
 }
 .dropdown a:hover {
-  background-color: #f1f1f1
+  background-color: #b1ffa5;
 }
 .show {
   display:block;
 }
-
 input.counting  {
   margin: 10px;
   display: inline;
@@ -163,7 +144,6 @@ input.counting  {
 button.counter {
   background-color:  #39FF14;
 }
-
 .star-rating {
   font-size: 0;
   margin-left: 10px;
@@ -222,7 +202,7 @@ button.counter {
   right: 0;
   text-align: center;
   padding: 20px;
-  display: block;
+  display: none;
 }
 
 /**, ::after, ::before {
@@ -233,6 +213,8 @@ button.counter {
   text-align: center;
   vertical-align: middle;
 }*/
+
+*, *:before, *:after {box-sizing:  border-box !important;}
 
 /*body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",  Helvetica, Arial, "Lucida Grande", sans-serif;

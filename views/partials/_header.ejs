@@ -13,19 +13,19 @@
 <body>
 
   <nav id="nav-bar-container">
-    <a href="/"><img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png"></a>
+    <a href="/"><img class="sitelogo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png"></a>
     <span class="button-container">
       <a href="/"><button class="home" type="profile">Home</button></a>
       <a href="/resources/new"><button class="post" type="profile">Post</button></a>
       <a href="/userprofile"><button class="profile" type="profile">Profile</button></a>
       <a href="/login"><button class="profile" type="profile">Login</button></a>
     </span>
-    <!-- <form action="/search" method="POST"> -->
-      <!-- <label for="search"></label> -->
+ 
       <span class="search-bar-container">
-        <form action="/api/activity/search" method="GET" id="searchkey">
-        <input id="search" type="text" name="search" placeholder="Search for a topic or URL" style="display: inline;" />
-        <button  type="submit" form="searchkey" value="Submit" style="display: inline;">Search</button>
+        <h2 class="h2header">Resourcerer</h2>
+        <form action="/search" method="GET" id="searchkey">
+        <input id="search" type="text" name="search" placeholder="Search for a topic or URL" size="40" />
+        <input type="submit" name="Search" value="search" class="searchfor" />
         </form>
       </span>
   </form>

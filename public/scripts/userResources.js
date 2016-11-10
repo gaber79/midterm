@@ -4,9 +4,8 @@ $(() => {
 
   $.get('/api/users/1').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
-    console.log("this is being printed in resources. ------------=============")
+    // console.log("this is being printed in resources. ------------=============")
     const dom = resources.forEach(resource => {
-        console.log("----------------------->",resource)
         let resourceTag = $("<article>").addClass('each-resource');
 
         resourceTag.append($('<img class="logo" src="http://clipartix.com/wp-content/uploads/2016/05/Cartoon-lightning-bolt-clipart.png" width="80" height="80">'));
@@ -35,7 +34,7 @@ $(() => {
 
     });
 
-    $('body').append(containerTag);
+    $('div.row').append(containerTag);
     });
   }
 

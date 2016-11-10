@@ -1,5 +1,11 @@
+html {
+  font-family: courier;
+  color: #696969;
+}
+
 body {
   background-color: #EEE;
+  margin-top: 90px;
 }
 
 body h1 {

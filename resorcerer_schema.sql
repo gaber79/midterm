@@ -24,8 +24,8 @@ CREATE TABLE user_activity (
 );
 CREATE TABLE comments (
   commentsID BIGSERIAL PRIMARY KEY,
-  userID INT NOT NULL REFERENCES users(userID) ON DELETE CASCADE,
-  resourcesID INT NOT NULL REFERENCES resources(resourcesID) ON DELETE CASCADE,
+  userID INT REFERENCES users(userID) ON DELETE CASCADE,
+  resourcesID INT REFERENCES resources(resourcesID) ON DELETE CASCADE,
   comment VARCHAR(255)
 
 );

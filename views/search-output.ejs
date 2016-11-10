@@ -1,16 +1,19 @@
 <% include partials/_header %>
 
+
+
 <section class="search-output">
-  <% results.forEach(function(result){ %>
-    <% if (typeof result === null) { %>
-       <p><h2>No Results, Brah!</h2></p>
-    <% } else { %>
-       <p>
-        <a href="<%=result.urls%>"><%= JSON.stringify(result) %></a>
-        <%= result.urls %>
-        <%= result.type %>
-        <%= result.topic %>
-      </p>
-    <% } %>
-  <% }); %>
+ <% results.forEach(function(result){ %>
+   <% if (typeof result === null) { %>
+      <p><h2>No Results, Brah!</h2></p>
+   <% } else { %>
+     <p>
+       <a href="<%=result.urls%>"><%= JSON.stringify(result.urls) %></a><br>
+       <%= result.type %><br>
+       <%= result.topic %>
+     </p>
+   <% } %>
+ <% }); %>
 </section>
+
+<% include partials/_footer %>

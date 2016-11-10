@@ -3,6 +3,29 @@
 <head>
 <title>Resorcerer</title>
 
+<script type="text/javascript">
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+  function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+</script>
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script type="text/javascript" src="/scripts/picture.js"></script>
 
@@ -11,7 +34,6 @@
 </head>
 <body>
 <% include ../views/partials/_header %>
-Welcome to Resourcerer!
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Sort By...</button>
   <div id="myDropdown" class="dropdown-content">
@@ -19,30 +41,9 @@ Welcome to Resourcerer!
     <a href="/filter-by-pictures" class="sortpics">Pictures</a>
     <a href="/filter-by-video" class="sortvids">Videos</a>
   </div>
+</div>
+<div class="row"></div>
 
 
 </body>
-<script type="text/javascript">
-  /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-  /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-
-</script>
 </html>

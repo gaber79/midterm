@@ -13,7 +13,7 @@ $(() => {
   // <textarea name="text"></textarea>
   function renderResource () {
 
-  $.get('/api/activity/search').then(resources => {
+  $.get('/search').then(resources => {
     let containerTag = $('<section>').addClass('resource-container');
 
     const dom = resources.forEach(resource => {
@@ -31,7 +31,7 @@ $(() => {
         resourceTag.append(inputform);
         inputform.append($('<input name="resourceid" type="hidden" value="' + resource.resourcesid + '" />'));
         inputform.append($('<textarea name="commenttext" placeholder="join the conversation..."></textarea>'));
-        inputform.append($('<input type="submit" value="Comment">'));
+        inputform.append($('<input type="submit" name="comment" value="Comment">'));
         let commentTag = $('<ul>');
         resourceTag.append(commentTag);
 
@@ -47,7 +47,7 @@ $(() => {
 
     });
 
-    $('body').append(containerTag);
+    $('div.row').append(containerTag);
     });
   }
 
