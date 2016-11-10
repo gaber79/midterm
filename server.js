@@ -187,7 +187,7 @@ app.get("/search", (req, res) => {
    .orWhere('topic', 'like', `%${searchTerm}%`)
    .then((results) => {
      res.render("search-output", {results});
-     res.json(results);
+     // res.json(results);
    }, function errorCb(err) {
      throw err;
    });

@@ -62,8 +62,8 @@ $(() => {
     });
   }
 
-
-  $('body').on('submit', 'form', function (event) {
+  // comment
+  $('div.row').on('submit', 'form', function (event) {
     event.preventDefault();
     console.log('form values:', $(this).serialize());
     console.log('event values:', JSON.stringify(event));
